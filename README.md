@@ -1,5 +1,5 @@
-raft-leveldb
-===========
+raft-leveldb [![Build Status](https://travis-ci.org/fanbingxin/raft-leveldb.svg?branch=master)](https://travis-ci.org/fanbingxin/raft-leveldb)
+============
 
 This repository provides the `raftleveldb` package. The package exports the
 `Store` which is an implementation of both a `LogStore` and `StableStore`.
