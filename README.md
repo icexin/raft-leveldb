@@ -1,4 +1,4 @@
-raft-leveldb [![Build Status](https://travis-ci.org/fanbingxin/raft-leveldb.svg?branch=master)](https://travis-ci.org/fanbingxin/raft-leveldb)
+raft-leveldb [![Build Status](https://travis-ci.org/icexin/raft-leveldb.svg?branch=master)](https://travis-ci.org/icexin/raft-leveldb)
 ============
 
 This repository provides the `raftleveldb` package. The package exports the
