@@ -97,7 +97,14 @@ func (s *Store) Set(key []byte, val []byte) error {
 }
 
 func (s *Store) Get(key []byte) ([]byte, error) {
-	return s.db.Get(key, nil)
+	v, err := s.db.Get(key, nil)
+	if err == leveldb.ErrNotFound {
+		return make([]byte, 0), nil
+	}
+	if err != nil {
+		return nil, err
+	}
+	return v, nil
 }
 
 func (s *Store) SetUint64(key []byte, val uint64) error {
@@ -108,6 +115,9 @@ func (s *Store) GetUint64(key []byte) (uint64, error) {
 	val, err := s.Get(key)
 	if err != nil {
 		return 0, err
+	}
+	if len(val) == 0 {
+		return 0, nil
 	}
 	return bytesToUint64(val), nil
 }
