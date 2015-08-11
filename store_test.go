@@ -6,7 +6,6 @@ import (
 	"testing"
 
 	"github.com/hashicorp/raft"
-	"github.com/syndtr/goleveldb/leveldb"
 )
 
 func TestStableStore(t *testing.T) {
@@ -23,9 +22,13 @@ func TestSetGet(t *testing.T) {
 
 	// Get a bad key
 	key := []byte("foobar")
-	_, err := l.Get(key)
-	if err != leveldb.ErrNotFound {
+	v, err := l.Get(key)
+	if err != nil {
 		t.Fatalf("err: %v ", err)
+	}
+
+	if len(v) != 0 {
+		t.Fatal("value not empty")
 	}
 
 	val := []byte("this is a test value")
@@ -49,9 +52,13 @@ func TestSetGetUint64(t *testing.T) {
 
 	// Get a bad key
 	key := []byte("dolla bills")
-	_, err := l.GetUint64(key)
-	if err != leveldb.ErrNotFound {
+	v, err := l.GetUint64(key)
+	if err != nil {
 		t.Fatalf("err: %v ", err)
+	}
+
+	if v != 0 {
+		t.Fatal("value not 0")
 	}
 
 	var val uint64 = 42000
